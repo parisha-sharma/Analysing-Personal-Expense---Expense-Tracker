@@ -24,6 +24,7 @@ The dataset contains **300+ transactions across 12 months** with details includi
 ### 🎯 Project Goals
 
 - Store and manage expense records using a structured MySQL database
+- Perform exploratory data analysis on transaction data using Python
 - Write 30 analytical SQL queries to extract meaningful financial patterns
 - Visualize spending trends, cashback performance, and payment behavior
 - Build an interactive BI-style dashboard using Streamlit and Plotly
@@ -40,10 +41,10 @@ The dataset contains **300+ transactions across 12 months** with details includi
 ### 🔍 Data Analytics
 - MySQL database with 300+ expense transaction records
 - 30 analytical SQL queries for financial insights
+- Exploratory data analysis with statistical summaries
 - Category-wise and monthly spending analysis
 - Cashback tracking and efficiency metrics
 - High-value transaction detection
-- Payment method analysis
 
 </td>
 <td width="50%">
@@ -71,6 +72,8 @@ The dataset contains **300+ transactions across 12 months** with details includi
 | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) | Data processing and backend logic | 3.8+ |
 | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white) | Expense data storage and SQL analytics | Latest |
 | ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white) | Data manipulation and transformation | Latest |
+| ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat&logo=python&logoColor=white) | Data visualization | Latest |
+| ![Seaborn](https://img.shields.io/badge/Seaborn-3776AB?style=flat&logo=python&logoColor=white) | Statistical visualizations | Latest |
 | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white) | Interactive web dashboard | Latest |
 | ![Plotly](https://img.shields.io/badge/Plotly-3f4f75?style=flat&logo=plotly&logoColor=white) | Interactive charts and visualizations | Latest |
 
@@ -102,8 +105,12 @@ pip install -r requirements.txt
 ```txt
 streamlit
 pandas
+numpy
+matplotlib
+seaborn
 plotly
 mysql-connector-python
+jupyter
 ```
 
 ---
@@ -124,7 +131,24 @@ python data_generator.py
 
 This script creates the `expenses` table, generates 300 realistic transactions, and distributes records across 12 months.
 
-### 3. Launch the Dashboard
+### 3. Run Exploratory Data Analysis
+
+```bash
+jupyter notebook
+
+# Open expenses_data_analysis.ipynb
+```
+
+This notebook loads data directly from MySQL and covers:
+- Dataset overview and statistical summary
+- Missing value check
+- Date feature engineering (month, year, day of week)
+- Category and monthly spending analysis
+- Payment method and cashback analysis
+- High-value transaction detection
+- Correlation matrix and spending distribution
+
+### 4. Launch the Dashboard
 
 ```bash
 streamlit run app.py
@@ -161,13 +185,14 @@ The dashboard will open automatically in your browser.
 ```
 expense-finance-dashboard/
 │
-├── db_config.py          # Database connection configuration
-├── data_generator.py     # Generates and inserts synthetic expense data
-├── sql_queries.py        # 30 SQL analytics queries
-├── app.py                # Streamlit dashboard application
+├── db_config.py                    # Database connection configuration
+├── data_generator.py               # Generates and inserts synthetic expense data
+├── expenses_data_analysis.ipynb    # EDA notebook with visualizations
+├── sql_queries.py                  # 30 SQL analytics queries
+├── app.py                          # Streamlit dashboard application
 │
-├── requirements.txt      # Python dependencies
-├── README.md             # Project documentation
+├── requirements.txt                # Python dependencies
+├── README.md                       # Project documentation
 └── LICENSE
 ```
 
@@ -175,13 +200,15 @@ expense-finance-dashboard/
 
 ## 🎨 Visualizations
 
-The project includes several visualizations:
+The project includes visualizations across both the EDA notebook and the dashboard:
 
-- 📊 **Bar Charts** - Category-wise spending comparison across all months
+- 📊 **Bar Charts** - Category-wise spending and transaction count comparison
 - 📅 **Line Charts** - Monthly spending trends over the 12-month period
 - 🍩 **Pie Charts** - Payment method distribution across transactions
 - 💰 **Cashback Analysis** - Cashback earned by category and payment method
-- 📈 **Histograms** - Spending distribution across transaction value ranges
+- 📈 **Histograms** - Spending distribution across transaction value ranges (with KDE)
+- 🔥 **Correlation Heatmap** - Feature relationships across numeric columns
+- 📦 **Box Plots** - Outlier detection across spending categories
 - 🧾 **Data Tables** - Detailed transaction-level breakdown and summaries
 
 ---
